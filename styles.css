@@ -6,4 +6,5 @@ html{
     justify-content: center;
     align-items: center;
     height:600px;
+    flex-direction: column;
 }

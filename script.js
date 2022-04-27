@@ -1,13 +1,24 @@
+function insertBefore(el, referenceNode) {
+    referenceNode.parentNode.insertBefore(el, referenceNode);
+}
 const onClick = (event) => {
     if (event.target.nodeName === 'BUTTON') {
         computer = computerPlay();
         console.log(computer);
         result = playARound(event.target.id,computer)
-        console.log(annouceWinnerOfRound(result,event.target.id,computer));
+        content.textContent = annouceWinnerOfRound(result,event.target.id,computer);
     }
   }
   window.addEventListener('click', onClick);
 
+  const container = document.querySelector('.container');
+  const buttons = document.querySelector('.buttons')
+  const content = document.createElement('div');
+  content.classList.add('content');
+  //content.textContent = 'This is the glorious text-content!';
+  content.style.color='white';
+  insertBefore(content,buttons);
+   
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
