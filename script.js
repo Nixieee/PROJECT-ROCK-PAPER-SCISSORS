@@ -1,15 +1,25 @@
+const onClick = (event) => {
+    if (event.target.nodeName === 'BUTTON') {
+        computer = computerPlay();
+        console.log(computer);
+        result = playARound(event.target.id,computer)
+        console.log(annouceWinnerOfRound(result,event.target.id,computer));
+    }
+  }
+  window.addEventListener('click', onClick);
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 function computerPlay() {
-    let choice = ["Rock", "Paper", "Scissors"];
+    let choice = ["rock", "paper", "scissors"];
     let randomInt = getRandomInt(3);
     return choice[randomInt];
 }
 
 function playARound(playerChoice, computerChoice) {
-    playerChoice = playerChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
+    //playerChoice = playerChoice.toLowerCase();
+    //computerChoice = computerChoice.toLowerCase();
     let result;
 
     //0 - player won , 1 - player lost , 2 - draw
@@ -35,11 +45,13 @@ function playARound(playerChoice, computerChoice) {
 
 function annouceWinnerOfRound(result, playerChoice, computerChoice) {
     if (result == 0) return "You won! " + playerChoice.charAt(0).toUpperCase()+playerChoice.slice(1) + " beats " + computerChoice.toLowerCase();
-    if (result == 1) return "You lost! " + computerChoice.charAt(0).toUpperCase()+playerChoice.slice(1) + " beats " + playerChoice.toLowerCase();
+    if (result == 1) return "You lost! " + computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1) + " beats " + playerChoice.toLowerCase();
     if (result == 2) return "Draw!";
 }
 
-function game() {
+
+
+/*function game() {
     let playerScore = 0;
     let computerScore = 0;
     for (let i = 0; i < 5; i++) {
@@ -62,3 +74,4 @@ function game() {
 }
 
 console.log(game());
+*/
