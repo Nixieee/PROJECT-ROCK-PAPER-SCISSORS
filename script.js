@@ -1,12 +1,33 @@
 function insertBefore(el, referenceNode) {
     referenceNode.parentNode.insertBefore(el, referenceNode);
 }
+
 const onClick = (event) => {
     if (event.target.nodeName === 'BUTTON') {
         computer = computerPlay();
         console.log(computer);
         result = playARound(event.target.id,computer)
         content.textContent = annouceWinnerOfRound(result,event.target.id,computer);
+        if(result == 0){
+            playerResult++;
+            resultText.textContent = "Result: "+playerResult;
+        }else if(result == 1){
+            computerResult++;
+            computerResultText.textContent = "Computer result: "+computerResult;
+        }
+        if(playerResult == 5){
+            content.textContent = "Player was the first to 5 points!"
+            playerResult = 0;
+            computerResult = 0;
+            resultText.textContent = "Result: "+playerResult;
+            computerResultText.textContent = "Computer result: "+computerResult;
+        }else if(computerResult == 5){
+            content.textContent = "Computer was the first to 5 points!"
+            playerResult = 0;
+            computerResult = 0;
+            resultText.textContent = "Result: "+playerResult;
+            computerResultText.textContent = "Computer result: "+computerResult;
+        }
     }
   }
   window.addEventListener('click', onClick);
@@ -15,10 +36,24 @@ const onClick = (event) => {
   const buttons = document.querySelector('.buttons')
   const content = document.createElement('div');
   content.classList.add('content');
-  //content.textContent = 'This is the glorious text-content!';
-  content.style.color='white';
+  content.textContent = 'Make a choice!';
   insertBefore(content,buttons);
-   
+  
+  const header = document.createElement('div');
+  header.classList.add('header');
+  insertBefore(header,container);
+let playerResult = 0;
+let computerResult = 0;
+
+  const resultText = document.createElement('div');
+  resultText.classList.add('resultText');
+  resultText.textContent = "Result: "+playerResult;
+  header.appendChild(resultText);
+
+  const computerResultText = document.createElement('div');
+  computerResultText.classList.add('computerResultText');
+  computerResultText.textContent = "Computer result: "+computerResult;
+  header.appendChild(computerResultText);   
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }

@@ -8,3 +8,11 @@ html{
     height:600px;
     flex-direction: column;
 }
+.header{
+    display:flex;
+    justify-content: space-between;
+}
+
+.content,.resultText,.computerResultText{
+    color:white;
+}
